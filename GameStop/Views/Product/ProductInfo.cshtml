@@ -1,0 +1,62 @@
+@model GameStop.Models.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Product ";
+    Layout = "_Layout";
+}
+
+<head>
+    <title > Product </title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
+<form asp-action="ProductInfo" asp-controller="Product">
+    @Html.DisplayFor(model => model.Name)
+    <section class="field-row" style="justify-content: center;">
+        
+        <div class="window" style="vertical-align:top;">
+            <div class="title-bar">
+                <div class="title-bar-text">Trailer</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <iframe height="480" width="640" class="youtube-player" type="text/html"
+                        src="https://www.youtube.com/embed/wtIp8jOo8_o"
+                        frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="field-row-stacked" style="vertical-align:top;">
+            <div class="title-text">@Html.DisplayFor(model => model.Name)</div>
+            <img src=@Url.Content(Model.Avatar) alt="No image"/>
+            
+            <div class="av-text"> @Html.DisplayFor(model => model.Description) </div>
+            <ul class="tree-view">
+                <li> Info:
+                    <ul>
+                        <li>Developer: @Html.DisplayFor(model => model.Developer)</li>
+                        <li>Release Date: @Html.DisplayFor(model => model.ReleaseDate)</li>
+                    </ul>
+                </li>
+                <li> Publisher
+                    <ul>
+                        <li>Country: @Html.DisplayFor(model => model.publisher.Country)</li>
+                        <li>Publisher: @Html.DisplayFor(model => model.publisher.Name)</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="field-row">
+                <button> Buy </button>
+                <button> Add to cart </button>
+            </div>  
+        </div>
+
+    </section>
+</form>
+
+

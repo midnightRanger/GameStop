@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.11" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="6.0.7" />
+      <PackageReference Include="Svg" Version="3.4.4" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\build.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\converted\ms_sans_serif.woff" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\converted\ms_sans_serif.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\converted\ms_sans_serif_bold.woff" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\converted\ms_sans_serif_bold.woff2" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif-bold\license.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif-bold\MS Sans Serif Bold.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif-bold\readme.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif\license.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif\MS Sans Serif.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\fonts\src\ms-sans-serif\readme.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\button-down-active.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\button-down.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\button-left.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\button-right.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\button-up.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\checkmark-disabled.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\checkmark.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\close.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\groupbox-border.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\help.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\indicator-horizontal.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\indicator-rectangle-horizontal.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\maximize.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\minimize.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\radio-border-disabled.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\radio-border.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\radio-dot-disabled.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\radio-dot.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\restore.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\icon\scrollbar-background.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\server.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\98\style.css" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DAL" />
+      <Folder Include="wwwroot\icons" />
+    </ItemGroup>
+
+</Project>

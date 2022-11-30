@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = null; 
+}
+
+@model GameStop.Models.ViewModels.LoginViewModel
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://unpkg.com/98.css"/>
+    <link rel="stylesheet" href="css/site.css"/>
+</head>
+
+<body>
+
+
+<aside>
+    <ul class="tree-view">
+        <li> Text </li>
+        <li> Text </li>
+        <li> Text </li>
+        <li> Text </li>
+        <li> Text </li>
+        <li> Text </li>
+        <li> Text </li>  <li> Text </li>  <li> Text </li>
+    </ul>
+</aside>
+<div class="container_alignment">
+    <div class="title-text"> Game Stop </div>
+    <div class="title-text-2"> - Dive into the past </div>
+</div>
+
+
+<div class="container_alignment">
+<div class="window" style="width: 300px">
+  <div class="title-bar">
+    <div class="title-bar-text">Login Window</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+      <div class="field-row-">
+          <form method="post" asp-action="Login" asp-controller="Auth">
+              <div class="field-row-stacked" style="width: 200px">
+                  <label for="text22">Email</label>
+                  <input id="text22" asp-for="Email" type="email" hint="Email"/>
+              </div>
+              <div class="field-row-stacked" style="width: 200px">
+                  <label for="text23">Password</label>
+                  <input id="text23" asp-for="Password" type="password"/>
+              </div>
+              <div class="field-row-stacked" >
+              <input type="submit" value="Login In" >
+              </div>
+          </form>
+          
+           <form method="get" asp-action="Register" asp-controller="Auth">
+                       <div class="field-row-stacked" >
+                       <input type="submit" value="Register">
+                           </div>
+               </form>
+               
+          
+      </div>
+  </div>
+</div>
+</div>
+
+
+
+</body>
