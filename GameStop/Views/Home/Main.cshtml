@@ -1,0 +1,67 @@
+@using GameStop.Models.Safety
+@model IEnumerable<GameStop.Models.ViewModels.ProductViewModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<head>
+    <title>Store </title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
+
+<body>
+
+<form method="get" asp-action="Main">
+    <section class="field-row" style="margin: 0.5% 0;" >
+        <div class="title-text"> Game Stop </div>
+        <div class="field-row-stacked">
+            <label for="search">Find your game! </label>
+            <div class="field-row">
+                <input name="keyword" placeholder="Search..." value="@ViewData["keyword"]" type="search"/>
+                <button> Search </button>
+            </div>
+        </div>
+
+    </section>
+</form>
+
+@* <img src=@Url.Content(icons/) height="128px" width="128px" alt="Photo"/> *@
+<div>
+    @foreach (var item in Model)
+    {
+        <div style="display: inline-block">
+            <div class="window" style="width: 300px;">
+                    <div class="title-bar">
+                        <div class="title-bar-text">@item.Name</div>
+                    </div>
+                    <div class="window-body" style="height:  250px">
+                        <div align="center">
+                            <p> <img src=@Url.Content(item.Avatar) alt="Photo"/> </p>
+                        </div>
+                        <p> Info:</p>
+                        <ul>
+                            <li>Description: @item.Description</li>
+                            <li>Developer: @item.Developer</li>
+                            <li>Release Date: @item.ReleaseDate.ToString()</li>
+                        </ul>
+                        <section class="field-row">
+                            <input type="submit" value="Buy">
+                             <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.Id">
+                             <input type="submit" value="Info">
+                             </form>
+                        </section>
+                    </div>
+                    <div class="status-bar">
+                        <p class="status-bar-field">Status: @StatusParser.StatusPars(item.StatusId)</p>
+                        <p class="status-bar-field">Cost: @item.Cost</p>    
+                    </div>
+                </div>
+        </div>
+    }
+</div>
+
+<img src="icons/halflife.jpg"/>
+</body>
