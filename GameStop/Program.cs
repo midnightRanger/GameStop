@@ -9,7 +9,6 @@ using GameStop.DAL.Repository;
 using GameStop.Models;
 using GameStop.Response;
 using GameStop.Services;
-using GameStop.Services.Email;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -67,6 +66,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Auth/Login");
         options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Auth/Login");
+        
     });
 
 var app = builder.Build();

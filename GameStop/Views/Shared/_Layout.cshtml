@@ -23,8 +23,8 @@
       <div class="title-bar-text">A Helpful Bar</div>
       <div class="title-bar-controls">
         <button aria-label="Help"></button>
-          <button aria-label="Close"></button>
-          <button method="post" asp-controller="Auth" asp-action="Register"> </button>
+          <button aria-label="Close" onclick="location.href='@Url.Action("Logout", "Auth")'" > </button>
+          <button value="User" onclick="location.href='@Url.Action("UserInfo", "UserInfo")'" > User </button>
           </div>
     </div>
 </header>

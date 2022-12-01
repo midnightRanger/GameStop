@@ -5,6 +5,7 @@ namespace GameStop.Models;
 
 public class AccountModel
 {
+    //TODO VALIDATION
     [Key]
     public int Id { get; set; } 
     public string Login { get; set; } 
@@ -13,7 +14,7 @@ public class AccountModel
     
     public bool IsActive { get; set; }
 
-    //public UserModel User { get; set; }
+    public UserModel? User { get; set; }
     
     
 }

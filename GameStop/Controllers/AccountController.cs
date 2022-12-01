@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameStop.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase

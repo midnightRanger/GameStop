@@ -1,11 +1,12 @@
 using GameStop.DAL.Interface;
 using GameStop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStop.Controllers;
 
-
+[Authorize]
 [Route("api/user")]
 [ApiController]
 public class UserController: ControllerBase

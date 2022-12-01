@@ -1,0 +1,77 @@
+@model UserModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<form asp-action="UserUpdate" asp-controller="UserInfo" method="get">
+    
+    
+    @Html.DisplayFor(model => model.Name)
+    <div class="field-row" style="justify-content: left; height: 500px">
+    
+        <img src=@Url.Content(Model.Avatar) alt="no avatar?"> 
+    
+        <div class="window" style="vertical-align:top; top:0; bottom:0; height:100%;">
+            <div class="title-bar">
+                <div class="title-bar-text">@Html.DisplayFor(m => m.Account.Login)</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <div class="av-text"> Hello, @Html.DisplayFor(model => model.Name)!</div>
+                <ul class="tree-view">
+                    <li> Name: @Html.DisplayFor(model => model.Name) </li>
+                    <li> Surname: @Html.DisplayFor(model => model.Surname) </li>
+                    <li> Age: @Html.DisplayFor(model => model.Age) </li>
+                    <li> Points: @Html.DisplayFor(model => model.Points) </li>
+                    <li> Email: @Html.DisplayFor(model => model.Account.Email) </li>
+                    <li> Login: @Html.DisplayFor(model => model.Account.Login) </li>
+                </ul>
+
+                <section class="field-row" style="justify-content: flex-end">
+                    <input value="Edit" type="submit"/>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section class="field-row" style="justify-content: center;">
+
+        <div class="window" style="vertical-align:top;">
+            <div class="title-bar">
+                <div class="title-bar-text">@Html.DisplayFor(m => m.Account.Login)</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <div class="av-text"> Hello, @Html.DisplayFor(model => model.Name)!</div>
+                <ul class="tree-view">
+                    <li> Name: @Html.DisplayFor(model => model.Name) </li>
+                    <li> Surname: @Html.DisplayFor(model => model.Surname) </li>
+                    <li> Age: @Html.DisplayFor(model => model.Age) </li>
+                    <li> Points: @Html.DisplayFor(model => model.Points) </li>
+                    <li> Email: @Html.DisplayFor(model => model.Account.Email) </li>
+                    <li> Login: @Html.DisplayFor(model => model.Account.Login) </li>
+                </ul>
+
+                <section class="field-row" style="justify-content: flex-end">
+                    <input value="Edit" type="submit"/>
+                </section>
+            </div>
+        </div>
+    </section>
+
+</form>

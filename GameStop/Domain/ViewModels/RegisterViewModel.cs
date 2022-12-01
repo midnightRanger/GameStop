@@ -27,12 +27,12 @@ public class RegisterViewModel
     [Required(ErrorMessage = "Fill the name field!")]
     [DataType(DataType.Text)]
     [Display(Name="Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     
     [Required(ErrorMessage = "Fill the surname field!")]
     [DataType(DataType.Text)]
     [Display(Name="Surname")]
-    public string Surname { get; set; }
+    public string? Surname { get; set; }
     
     [Required(ErrorMessage = "Fill the age field!")]
     [Display(Name="Age")]

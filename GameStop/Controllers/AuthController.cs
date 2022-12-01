@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GameStop.Controllers;
-
+[AutoValidateAntiforgeryToken]
 public class AuthController : Controller
 {
     private readonly ApplicationContext db;
@@ -30,11 +30,8 @@ public class AuthController : Controller
     }
 
     [HttpGet]
-    public IActionResult Login()
-    {
-        return View();
-    }
-
+    public IActionResult Login() => View();
+    
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
@@ -54,11 +51,8 @@ public class AuthController : Controller
     }
 
     [HttpGet]
-    public IActionResult Register()
-    {
-        return View(); 
-    }
-    
+    public IActionResult Register() => View();
+
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
@@ -75,5 +69,12 @@ public class AuthController : Controller
             ModelState.AddModelError("", response.Description);
         }
         return View(model);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Login", "Auth");
     }
 }
