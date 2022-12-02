@@ -17,16 +17,20 @@ public class HomeController : Controller
     private readonly ApplicationContext _db; 
     private readonly IProductInfo _productInfoRepository;
     private readonly IProduct _productRepository;
+    private IEnumerable<ProductModel> _allProduct; 
 
     public HomeController(ILogger<HomeController> logger, 
         ApplicationContext db, 
         IProductInfo productInfoRepository,
-        IProduct productRepository)
+        IProduct productRepository
+        )
     {
         _productInfoRepository = productInfoRepository;
         _productRepository = productRepository; 
         _logger = logger;
-        _db = db; 
+        _db = db;
+        _allProduct = productRepository.getAll().Include(u => u.Platforms).Include(u=>u.ProductInfo).ToList();
+
     }
     
     public IActionResult Index()
@@ -46,28 +50,26 @@ public class HomeController : Controller
         ViewData["keyword"] = keyword;
         
         List<ProductViewModel> productView = new List<ProductViewModel>();
-        List<ProductInfoModel> productInfoList;
+        IEnumerable<ProductModel> productList;
 
         if (!String.IsNullOrEmpty(keyword))
-
-            productInfoList = await _productInfoRepository.getAll().Where(p
-                => p.Name.Contains(keyword) || p.Name.Contains(keyword)).AsNoTracking().ToListAsync();
+            productList = _allProduct.Where(p
+                => p.ProductInfo.Name.Contains(keyword) || p.ProductInfo.Name.Contains(keyword));
+        else productList = _allProduct;
         
-        else productInfoList = await _productInfoRepository.getProductInfos();
-            
-            foreach (var productInfo in productInfoList)
+        foreach (var product in productList)
             {
-                var product = await _productRepository.getAll().FirstOrDefaultAsync(p => p.ProductInfoId == productInfo.Id);
                 productView.Add(new ProductViewModel()
                     {
                         Id = product.Id,
-                        Name = productInfo.Name,
-                        Description = productInfo.Description,
-                        Avatar = productInfo.Avatar,
+                        Name = product.ProductInfo.Name,
+                        Description = product.ProductInfo.Description,
+                        Avatar = product.ProductInfo.Avatar,
                         Cost = product.Cost,
                         StatusId = product.StatusId, 
-                        Developer = productInfo.Developer,
-                        ReleaseDate = productInfo.ReleaseDate
+                        Developer = product.ProductInfo.Developer,
+                        ReleaseDate = product.ProductInfo.ReleaseDate,
+                        Platforms = product.Platforms
                     }
                 );
             }

@@ -14,5 +14,6 @@ public class ProductViewModel
     public string Name { get; set;  }
     public LicenseModel? license { get; set; } = null;
     public PublisherModel? publisher { get; set; } = null; 
+    public List<PlatformModel>? Platforms { get; set; }
 
 }
