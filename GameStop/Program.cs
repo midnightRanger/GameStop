@@ -21,10 +21,13 @@ builder.Services.AddHttpClient();
 
 //Able to resolve services 
 builder.Services.AddTransient<IAccount, AccountRepository>();
+
 builder.Services.AddTransient<IProductInfo, ProductInfoRepository>();
 builder.Services.AddTransient<IProduct, ProductRepository>();
 builder.Services.AddTransient<IUser, UserRepository>();
 builder.Services.AddTransient<ILicense, LicenseRepository>();
+
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -59,7 +62,6 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

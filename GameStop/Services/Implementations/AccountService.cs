@@ -44,6 +44,7 @@ public class AccountService : IAccountService
             {
                 Login = model.Login,
                 Email = model.Email,
+                IsActive = true,
                 Password = PasswordHasher.HashPassword(model.Password),
             };
 
@@ -53,7 +54,8 @@ public class AccountService : IAccountService
                 Surname = model.Surname,
                 AccountId = user.Id,
                 Account = user,
-                Age = model.Age
+                Age = model.Age,
+                Avatar = "~/avatars/default.png"
             };
 
             //TODO 
@@ -138,6 +140,57 @@ public class AccountService : IAccountService
         {
             _logger.LogError(ex, $"[Update]: {ex.Message}");
             return new BaseResponse<ClaimsIdentity>()
+            {
+                Description = ex.Message,
+                StatusCode = StatusCode.InternalServerError
+            };
+        }
+    }
+
+    public async Task<BaseResponse<bool>> ChangeAccount(UserUpdateView model)
+    {
+        try
+        {
+            var user = await _userRepository.getAll().FirstOrDefaultAsync(x => x.Id == model.UserId);
+            var account = await _accountRepository.getAll().FirstOrDefaultAsync(x => x.Id == model.AccountId);
+            if (user == null || account == null)
+            {
+                return new BaseResponse<bool>()
+                {
+                    StatusCode = StatusCode.UserNotFound,
+                    Description = "User or User's account not found"
+                };
+            }
+
+            /*
+             * Account constructor
+             */
+            account.Email = model.Email;
+            account.Login = model.Login;
+            account.Password = PasswordHasher.HashPassword(model.Password);
+
+            /*
+             * User constructor
+            */
+            user.Account = account;
+            user.Age = model.Age;
+            //TODO add Avatar change
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+
+            _userRepository.updateUser(user);
+            _accountRepository.updateAccount(account);
+            return new BaseResponse<bool>()
+            {
+                Data = true,
+                StatusCode = StatusCode.OK,
+                Description = "Account was updated"
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"[UpdateUser]: {ex.Message}");
+            return new BaseResponse<bool>()
             {
                 Description = ex.Message,
                 StatusCode = StatusCode.InternalServerError

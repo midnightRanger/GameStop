@@ -1,48 +1,72 @@
 @model GameStop.Models.ViewModels.RegisterViewModel
-<h2>Регистрация нового пользователя</h2>
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null; 
+}
+
 <form method="post" asp-controller="Auth" asp-action="Register">
-    <div asp-validation-summary="ModelOnly"></div>
+    <div class="container_alignment">
+        <div class="window" style="width: 300px">
+            <div class="title-bar">
+                <div class="title-bar-text">Register Window</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div asp-validation-summary="All"></div>
+                <div class="field-row-">
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Login"></label><br/>
+                        <input asp-for="Login"/>
+                        <span asp-validation-for="Login"></span>
+                    </div>
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Email"></label><br/>
+                        <input asp-for="Email"/>
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Password"></label><br/>
+                        <input asp-for="Password"/>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="PasswordConfirm"></label><br/>
+                        <input asp-for="PasswordConfirm"/>
+                        <span asp-validation-for="PasswordConfirm"></span>
+                    </div>
+              
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Name"></label><br/>
+                        <input asp-for="Name"/>
+                        <span asp-validation-for="Name"></span>
+                    </div>
+              
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Surname"></label><br/>
+                        <input asp-for="Surname"/>
+                        <span asp-validation-for="Surname"></span>
+                    </div>
+              
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="Age"></label><br/>
+                        <input asp-for="Age"/>
+                        <span asp-validation-for="Age"></span>
+                    </div>
+
+            
     
-    <div>
-        <label asp-for="Login"></label><br />
-        <input asp-for="Login" />
-        <span asp-validation-for="Login"></span>
-    </div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="PasswordConfirm"></label><br />
-        <input asp-for="PasswordConfirm" />
-        <span asp-validation-for="PasswordConfirm"></span>
-    </div>
-    
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    
-    <div>
-        <label asp-for="Surname"></label><br />
-        <input asp-for="Surname" />
-        <span asp-validation-for="Surname"></span>
-    </div>
-    
-    <div>
-        <label asp-for="Age"></label><br />
-        <input asp-for="Age" />
-        <span asp-validation-for="Age"></span>
-    </div>
-    
-    <div>
-        <input type="submit" value="Регистрация" />
+                    <div>
+                        <input type="submit" value="Register"/>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
     </div>
 </form>
+    

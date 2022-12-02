@@ -3,6 +3,7 @@ using GameStop.DAL.Repository;
 using GameStop.Models;
 using GameStop.Models.Safety;
 using GameStop.Models.ViewModels;
+using GameStop.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,12 +19,14 @@ public class UserInfoController: Controller
     private readonly IUser _userRepository;
     private List<UserModel> _userList;
     private UserModel _user;
+    private readonly IAccountService _accountService;
 
     public UserInfoController(ILogger<UserInfoController> logger, 
         ApplicationContext db, 
         IProductInfo productInfoRepository,
         IUser userRepository,
-        IAccount accountRepository
+        IAccount accountRepository,
+        IAccountService accountService
     )
     {
         _userRepository = userRepository;
@@ -31,7 +34,7 @@ public class UserInfoController: Controller
         _logger = logger;
         _db = db;
         _userList = userRepository.getAll().Include(u => u.Account).ToList();
-        
+        _accountService = accountService;
     }
     
     [HttpGet]
@@ -70,19 +73,16 @@ public class UserInfoController: Controller
             
             ModelState.AddModelError("OldPassword", "Your old password is incorrect! " );
 
+        userView.AccountId = _user.AccountId;
+        userView.UserId = _user.Id; 
         if(ModelState.IsValid)
         {
-                return Ok();
-            // var response = await _accountService.Register(model);
-            // if (response.StatusCode == GameStop.StatusCode.OK)
-            // {
-            //     return RedirectToAction("Index", "Home");
-            // }
-            // ModelState.AddModelError("", response.Description);
-
-            
+            var response = await _accountService.ChangeAccount(userView);
+            if (response.StatusCode == GameStop.StatusCode.OK)
+            {
+                return RedirectToAction("UserInfo", "UserInfo");
+            }
         }
-    
         return View(userView);
     }
 }
