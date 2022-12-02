@@ -37,7 +37,7 @@
                     <div class="title-bar">
                         <div class="title-bar-text">@item.Name</div>
                     </div>
-                    <div class="window-body" style="height:  250px">
+                    <div class="window-body" style="height:  300px">
                         <div align="center">
                             <p> <img src=@Url.Content(item.Avatar) alt="Photo"/> </p>
                         </div>
@@ -46,6 +46,11 @@
                             <li>Description: @item.Description</li>
                             <li>Developer: @item.Developer</li>
                             <li>Release Date: @item.ReleaseDate.ToString()</li>
+                            <li>Platforms: </li>
+                            @foreach (var platform in item.Platforms)
+                            {
+                                <li> @platform.Name </li>
+                            }
                         </ul>
                         <section class="field-row">
                             <input type="submit" value="Buy">
