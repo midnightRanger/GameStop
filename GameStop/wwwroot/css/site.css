@@ -37,6 +37,13 @@ aside, section {
   font-family: PixalatedSans, serif;
 }
 
+.error-text {
+  font-size: medium;
+  color: #b02a37;
+  font-weight: bolder;
+  font-family: PixalatedSans, serif;
+}
+
 .av-text {
   font-size: x-large;
   font-weight: normal;

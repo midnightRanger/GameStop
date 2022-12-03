@@ -30,6 +30,7 @@ builder.Services.AddTransient<ICart, CartRepository>();
 builder.Services.AddTransient<IEkey, EKeyRepository>();
 
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

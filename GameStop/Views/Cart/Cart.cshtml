@@ -1,3 +1,5 @@
+@using GameStop.Models.Safety
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model GameStop.Models.CartModel
 
 @{
@@ -5,9 +7,43 @@
     Layout = "_Layout";
 }
 
- @foreach(var ekey in Model.Ekeys)
-     {
-         <div>
-         @ekey.Product.ProductInfo.Name;
-         </div>
-     } 
+<body>
+    <div class="error-text"> <div asp-validation-summary="ModelOnly"> </div>
+    @foreach (var item in Model.Ekeys)
+    {
+        <div style="display: inline-block">
+            <div class="window" style="width: 300px;">
+                <div class="title-bar">
+                    <div class="title-bar-text">@item.Product.ProductInfo.Name</div>
+                    <form method="get" asp-action="DeleteFromCart"  asp-route-id="@item.ProductId" asp-controller="Cart">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </div>
+                <div class="window-body" style="height:  300px">
+                    <div align="center">
+
+                        <p> <img src=@Url.Content(item.Product.ProductInfo.Avatar) alt="Photo"/> </p>
+                    </div>
+                    <p> Info:</p>
+                    <ul>
+                        <li>Description: @item.Product.ProductInfo.Description</li>
+                        <li>Developer: @item.Product.ProductInfo.Developer</li>
+                        <li>Release Date: @item.Product.ProductInfo.ReleaseDate.ToString()</li>
+                        
+                    </ul>
+                <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.ProductId">
+                    <input type="submit" value="Info">
+                    </form>
+                </div>
+                <div class="status-bar">
+                    <p class="status-bar-field">Status: @StatusParser.StatusPars(item.Product.StatusId)</p>
+                    <p class="status-bar-field">Cost: @item.Product.Cost</p>
+                </div>
+                
+                
+            </div>
+        </div>
+    }
+</div>
+</body>
+

@@ -45,9 +45,11 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Main(string keyword)
+    public async Task<IActionResult> Main(string? keyword, string? error)
     {
         ViewData["keyword"] = keyword;
+        if(error != null)
+        ModelState.AddModelError("", error);
         
         List<ProductViewModel> productView = new List<ProductViewModel>();
         IEnumerable<ProductModel> productList;

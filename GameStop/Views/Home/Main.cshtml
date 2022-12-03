@@ -30,42 +30,44 @@
 
 @* <img src=@Url.Content(icons/) height="128px" width="128px" alt="Photo"/> *@
 <div>
+    <div class="error-text"> <div asp-validation-summary="ModelOnly"></div> </div>
     @foreach (var item in Model)
     {
         <div style="display: inline-block">
             <div class="window" style="width: 300px;">
-                    <div class="title-bar">
-                        <div class="title-bar-text">@item.Name</div>
-                    </div>
-                    <div class="window-body" style="height:  300px">
-                        <div align="center">
-                            <p> <img src=@Url.Content(item.Avatar) alt="Photo"/> </p>
-                        </div>
-                        <p> Info:</p>
-                        <ul>
-                            <li>Description: @item.Description</li>
-                            <li>Developer: @item.Developer</li>
-                            <li>Release Date: @item.ReleaseDate.ToString()</li>
-                            <li>Platforms: </li>
-                            @foreach (var platform in item.Platforms)
-                            {
-                                <li> @platform.Name </li>
-                            }
-                        </ul>
-                        <section class="field-row">
-                            <form method="post" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
-                                <input type="submit" value="Add to cart">
-                            </form>
-                            <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.Id">
-                                <input type="submit" value="Info">
-                            </form>
-                        </section>
-                    </div>
-                    <div class="status-bar">
-                        <p class="status-bar-field">Status: @StatusParser.StatusPars(item.StatusId)</p>
-                        <p class="status-bar-field">Cost: @item.Cost</p>    
-                    </div>
+                <div class="title-bar">
+                    <div class="title-bar-text">@item.Name</div>
                 </div>
+                <div class="window-body" style="height:  300px">
+                    <div align="center">
+
+                        <p> <img src=@Url.Content(item.Avatar) alt="Photo"/> </p>
+                    </div>
+                    <p> Info:</p>
+                    <ul>
+                        <li>Description: @item.Description</li>
+                        <li>Developer: @item.Developer</li>
+                        <li>Release Date: @item.ReleaseDate.ToString()</li>
+                        <li>Platforms: </li>
+                        @foreach (var platform in item.Platforms)
+                        {
+                            <li> @platform.Name </li>
+                        }
+                    </ul>
+                    <section class="field-row">
+                        <form method="get" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                            <input type="submit" value="Add to cart">
+                        </form>
+                        <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.Id">
+                            <input type="submit" value="Info">
+                        </form>
+                    </section>
+                </div>
+                <div class="status-bar">
+                    <p class="status-bar-field">Status: @StatusParser.StatusPars(item.StatusId)</p>
+                    <p class="status-bar-field">Cost: @item.Cost</p>
+                </div>
+            </div>
         </div>
     }
 </div>
