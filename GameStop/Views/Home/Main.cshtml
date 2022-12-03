@@ -53,10 +53,12 @@
                             }
                         </ul>
                         <section class="field-row">
-                            <input type="submit" value="Buy">
-                             <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.Id">
-                             <input type="submit" value="Info">
-                             </form>
+                            <form method="post" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                <input type="submit" value="Add to cart">
+                            </form>
+                            <form method="get" asp-action="ProductInfo" asp-controller="Product" asp-route-id="@item.Id">
+                                <input type="submit" value="Info">
+                            </form>
                         </section>
                     </div>
                     <div class="status-bar">

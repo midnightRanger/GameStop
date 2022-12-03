@@ -11,16 +11,18 @@ namespace GameStop.Services;
 public class AccountService : IAccountService
 {
     private readonly IAccount _accountRepository;
-    private readonly IUser _userRepository; 
+    private readonly IUser _userRepository;
+    private readonly ICart _cartRepository; 
     private readonly ILogger<AccountService> _logger; 
     
     public AccountService(IAccount accountRepository,
-        ILogger<AccountService> logger, IUser userRepository)
+        ILogger<AccountService> logger, IUser userRepository, ICart cartRepository)
     {
         _accountRepository = accountRepository;
         _userRepository = userRepository;
         _logger = logger;
-        
+        _cartRepository = cartRepository;
+
         //TODO
         //_proFileRepository = proFileRepository;
     }
@@ -55,7 +57,14 @@ public class AccountService : IAccountService
                 AccountId = user.Id,
                 Account = user,
                 Age = model.Age,
-                Avatar = "~/avatars/default.png"
+                Avatar = "~/avatars/default.png",
+            };
+
+            var userCart = new CartModel()
+            {
+                OwnerId = userInfo.Id, 
+                Sum = 0.00, 
+                Owner = userInfo
             };
 
             //TODO 
@@ -66,6 +75,7 @@ public class AccountService : IAccountService
 
             await _accountRepository.addAccount(user);
             await _userRepository.addUser(userInfo);
+            await _cartRepository.addCart(userCart);
            //await _proFileRepository.Create(profile);
             var result = Authenticate(user);
 

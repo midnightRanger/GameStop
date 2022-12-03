@@ -12,10 +12,7 @@ public class ProductModel
     
     public int LicenseId { get; set; }
     public LicenseModel? License { get; set; }
-    
-    public string EKeyId { get; set; }
-    public EKeyModel? EKey { get; set; }
-    
+
     public int ProductInfoId { get; set; }
     public ProductInfoModel? ProductInfo { get; set; }
     

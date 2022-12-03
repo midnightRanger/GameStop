@@ -17,51 +17,28 @@ public class LicenseRepository : ILicense
 
     public async Task addLicense(LicenseModel license)
     {
-        try
-        {
-            _db.License.Add(license);
-            await _db.SaveChangesAsync();
-        }
-        catch
-        {
-            throw;
-        }
+        _db.License.Add(license);
+        await _db.SaveChangesAsync();
     }
 
     public void updateLicense(LicenseModel license)
     {
-        try
-        {
-            _db.Entry(license).State = EntityState.Modified;
-            _db.SaveChanges();
-        }
-        catch
-        {
-            throw;
-        }
+        _db.Entry(license).State = EntityState.Modified;
+        _db.SaveChanges();
     }
 
     public LicenseModel deleteLicense(in int id)
     {
-        try
-        {
-            LicenseModel? license = _db.License.Find(id);
+        LicenseModel? license = _db.License.Find(id);
 
-            if (license != null)
-            {
-                _db.License.Remove(license);
-                _db.SaveChanges();
-                return license;
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-        catch
+        if (license != null)
         {
-            throw;
+            _db.License.Remove(license);
+            _db.SaveChanges();
+            return license;
         }
+
+        throw new ArgumentNullException();
     }
 
     public bool checkLicense(int id)
@@ -71,35 +48,19 @@ public class LicenseRepository : ILicense
 
     public async Task<List<LicenseModel>> getLicenses()
     {
-        try
-        {
-            return await _db.License.ToListAsync();
-        }
-        catch
-        {
-            throw; 
-        }
+        return await _db.License.ToListAsync();
     }
 
     public async Task<LicenseModel> getLicense(int id)
     {
-        try
-        {
-            LicenseModel? license = await _db.License.FindAsync(id);
+        LicenseModel? license = await _db.License.FindAsync(id);
 
-            if (license != null)
-            {
-                return license;
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-        catch
+        if (license != null)
         {
-            throw;
+            return license;
         }
+
+        throw new ArgumentNullException();
     }
 
 

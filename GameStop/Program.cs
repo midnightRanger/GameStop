@@ -26,6 +26,8 @@ builder.Services.AddTransient<IProductInfo, ProductInfoRepository>();
 builder.Services.AddTransient<IProduct, ProductRepository>();
 builder.Services.AddTransient<IUser, UserRepository>();
 builder.Services.AddTransient<ILicense, LicenseRepository>();
+builder.Services.AddTransient<ICart, CartRepository>();
+builder.Services.AddTransient<IEkey, EKeyRepository>();
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 

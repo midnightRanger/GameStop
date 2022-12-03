@@ -15,4 +15,5 @@ public class UserModel
     
     public int AccountId { get; set; } 
     public AccountModel? Account { get; set; } 
+    public List<CartModel>? Cart { get; set; }
 }

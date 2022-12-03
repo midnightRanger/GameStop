@@ -1,0 +1,13 @@
+@model GameStop.Models.CartModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+ @foreach(var ekey in Model.Ekeys)
+     {
+         <div>
+         @ekey.Product.ProductInfo.Name;
+         </div>
+     } 
