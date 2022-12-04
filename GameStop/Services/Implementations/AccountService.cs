@@ -58,6 +58,7 @@ public class AccountService : IAccountService
                 Account = user,
                 Age = model.Age,
                 Avatar = "~/avatars/default.png",
+                Balance = 0.00
             };
 
             var userCart = new CartModel()

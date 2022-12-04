@@ -1,8 +1,19 @@
-
+@using System.Collections.Specialized
+@model IEnumerable<GameStop.Models.ViewModels.OrderViewModel>
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+@foreach (var item in Model)
+{
+    <p> @item.DateTime </p>
+    
+     @foreach (var key in item.Ekeys)
+     {
+        
+         <p> @key.Key </p>
+     }
+     
+}

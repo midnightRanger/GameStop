@@ -16,7 +16,7 @@ public class OrderRepository : IOrder
     
     public async Task addOrder(OrderModel order)
     {
-        _db.Order.Add(order);
+        _db.Order.AddAsync(order);
         await _db.SaveChangesAsync();
     }
 

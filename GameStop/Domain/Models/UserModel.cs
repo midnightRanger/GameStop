@@ -14,7 +14,7 @@ public class UserModel
     public String? Avatar { get; set; }
     
     public int AccountId { get; set; } 
-    public AccountModel? Account { get; set; } 
-    public double? Balance { get; set; }
+    public AccountModel? Account { get; set; }
+    public double? Balance { get; set; } = null; 
     public List<CartModel>? Cart { get; set; }
 }
