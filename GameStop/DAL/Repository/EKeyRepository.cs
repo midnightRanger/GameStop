@@ -21,10 +21,14 @@ public class EKeyRepository : IEkey
         await _db.SaveChangesAsync();
     }
 
-    public void updateEkey(EKeyModel ekey)
+    public async Task updateEkey(EKeyModel ekey)
     {
         _db.Entry(ekey).State = EntityState.Modified;
-        _db.SaveChanges();
+        await _db.SaveChangesAsync();
+    }
+    public async Task updateEkeyInLoop(EKeyModel ekey)
+    {
+        _db.Entry(ekey).State = EntityState.Modified;
     }
 
     public EKeyModel deleteEkey(string key)

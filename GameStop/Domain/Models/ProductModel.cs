@@ -17,7 +17,4 @@ public class ProductModel
     public ProductInfoModel? ProductInfo { get; set; }
     
     public List<PlatformModel> Platforms { get; set; } = new();
-    
-    public List<OrderModel> Orders { get; set; } = new List<OrderModel>();
-    public List<ConfirmedOrder> ConfirmedOrders { get; set; } = new List<ConfirmedOrder>();
 }

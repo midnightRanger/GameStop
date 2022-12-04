@@ -46,13 +46,13 @@ public class CartController : Controller
     {
         _user = _userList.FirstOrDefault(u => u.Account?.Login == User.Identity.Name);
         CartModel _cart = _cartList.FirstOrDefault(c => c.OwnerId == _user.Id);
-        EKeyModel ekey = _cart.Ekeys.FirstOrDefault(e => e.ProductId == id);
 
-        ekey.CartId = null; 
-        _ekeyRepository.updateEkey(ekey);
-        _db.SaveChangesAsync();
-
-        return RedirectToAction("Cart", "Cart");
+        var response = await _cartService.DeleteFromCart(id, _cart);
+        
+        if (response.StatusCode == GameStop.StatusCode.OK) 
+            return RedirectToAction("Cart", "Cart");
+        
+        return RedirectToAction("Cart", "Cart", new {error = response.Description});
 
     }
 

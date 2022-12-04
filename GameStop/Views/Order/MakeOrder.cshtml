@@ -1,0 +1,31 @@
+@model GameStop.Models.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<form asp-action="OrderConfirm" asp-controller="Order">
+
+   
+    
+    
+    <div class="window" style="width: 400px">
+      <div class="title-bar">
+        <div class="title-bar-text">Order confirmation</div>
+      </div>
+      <div class="window-body">
+          <p> Order info:</p>
+          <p> Current sum: @Model.Sum</p>
+          <p> Balance: @Model.User.Balance</p>
+          <p> Products: </p>
+          <ul>
+              @foreach (var ek in Model.Cart.Ekeys)
+              {
+                  <li> @ek.Product.ProductInfo.Name - @ek.Product.Cost </li>
+              }
+          </ul>
+           <input type="submit" value="Confirm"/>
+      </div>
+    </div>
+</form>

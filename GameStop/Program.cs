@@ -28,6 +28,7 @@ builder.Services.AddTransient<IUser, UserRepository>();
 builder.Services.AddTransient<ILicense, LicenseRepository>();
 builder.Services.AddTransient<ICart, CartRepository>();
 builder.Services.AddTransient<IEkey, EKeyRepository>();
+builder.Services.AddTransient<IOrder, OrderRepository>();
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ICartService, CartService>();
@@ -57,7 +58,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
-        o => o.UseNodaTime());
+        o => o.UseNodaTime());  
     options.LogTo(Console.WriteLine);
     options.EnableSensitiveDataLogging();   
 });
@@ -106,6 +107,7 @@ app.Use(async (context, next) =>
     context.Response.Headers.Add("X-Frame-Options", "ALLOW-FROM https://www.youtube.com/");
     await next.Invoke();
 });
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 app.MapControllerRoute(
     name: "default",

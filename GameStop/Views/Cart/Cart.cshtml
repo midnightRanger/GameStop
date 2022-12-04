@@ -3,12 +3,20 @@
 @model GameStop.Models.CartModel
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "Cart";
+    Layout = "_Layout"; 
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
 <body>
-    <div class="error-text"> <div asp-validation-summary="ModelOnly"> </div>
+<div class="title-text"> GameStop - @Model.Owner.Account.Login cart </div>
+<form asp-action="MakeOrder" asp-controller="Order">
+    <input type="submit" value="Make order"/>
+</form>
+    <div class="error-text" asp-validation-summary="ModelOnly"> </div>
     @foreach (var item in Model.Ekeys)
     {
         <div style="display: inline-block">
@@ -39,11 +47,8 @@
                     <p class="status-bar-field">Status: @StatusParser.StatusPars(item.Product.StatusId)</p>
                     <p class="status-bar-field">Cost: @item.Product.Cost</p>
                 </div>
-                
-                
             </div>
         </div>
     }
-</div>
 </body>
 

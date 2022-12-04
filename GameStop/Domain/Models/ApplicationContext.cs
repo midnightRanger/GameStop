@@ -18,6 +18,7 @@ public class ApplicationContext : DbContext
     public DbSet<EKeyModel> EKey { get; set; } = null!;
     public DbSet<LicenseModel> License { get; set; } = null!;
     public DbSet<CartModel> Cart { get; set; } = null!;
+    public DbSet<OrderModel> Order { get; set; } = null!;
     
     public ApplicationContext()
     {

@@ -12,4 +12,6 @@ public class EKeyModel
     public ProductModel? Product { get; set; }
     public int? CartId { get; set; }
     public CartModel? Cart { get; set; }
+    public int? OrderId { get; set; }
+    public OrderModel? Order { get; set; }
 }

@@ -16,51 +16,28 @@ public class ProductInfoRepository : IProductInfo
     
     public async Task addProductInfo(ProductInfoModel productInfo)
     {
-        try
-        {
-            _db.ProductInfo.Add(productInfo);
-            await _db.SaveChangesAsync();
-        }
-        catch
-        {
-            throw;
-        }
+        _db.ProductInfo.Add(productInfo);
+        await _db.SaveChangesAsync();
     }
 
     public void updateProductInfo(ProductInfoModel productInfo)
     {
-        try
-        {
-            _db.Entry(productInfo).State = EntityState.Modified;
-            _db.SaveChanges();
-        }
-        catch
-        {
-            throw;
-        }
+        _db.Entry(productInfo).State = EntityState.Modified;
+        _db.SaveChanges();
     }
 
     public ProductInfoModel deleteProductInfo(in int id)
     {
-        try
-        {
-            ProductInfoModel? productInfo = _db.ProductInfo.Find(id);
+        ProductInfoModel? productInfo = _db.ProductInfo.Find(id);
 
-            if (productInfo != null)
-            {
-                _db.ProductInfo.Remove(productInfo);
-                _db.SaveChanges();
-                return productInfo;
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-        catch
+        if (productInfo != null)
         {
-            throw;
+            _db.ProductInfo.Remove(productInfo);
+            _db.SaveChanges();
+            return productInfo;
         }
+
+        throw new ArgumentNullException();
     }
     
     public bool checkProductInfo(int id)
@@ -70,35 +47,19 @@ public class ProductInfoRepository : IProductInfo
 
     public async Task<List<ProductInfoModel>> getProductInfos()
     {
-        try
-        {
-            return await _db.ProductInfo.ToListAsync();
-        }
-        catch
-        {
-            throw; 
-        }
+        return await _db.ProductInfo.ToListAsync();
     }
 
     public async Task<ProductInfoModel> getProductInfo(int id)
     {
-        try
-        {
-            ProductInfoModel? productInfo = await _db.ProductInfo.FindAsync(id);
+        ProductInfoModel? productInfo = await _db.ProductInfo.FindAsync(id);
 
-            if (productInfo != null)
-            {
-                return productInfo;
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-        catch
+        if (productInfo != null)
         {
-            throw;
+            return productInfo;
         }
+
+        throw new ArgumentNullException();
     }
 
     public IQueryable<ProductInfoModel> getAll()
