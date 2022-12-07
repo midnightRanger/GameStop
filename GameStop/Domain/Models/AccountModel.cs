@@ -13,7 +13,7 @@ public class AccountModel
     public string Password { get; set; }
     
     public bool IsActive { get; set; }
-
+    public string Role { get; set; }
     public UserModel? User { get; set; }
     
     

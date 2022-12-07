@@ -1,0 +1,57 @@
+@model List<GameStop.Models.ViewModels.ProductPriceDiagram>
+@{
+    ViewBag.Title = "Charts";
+    Layout = "_Layout";
+}
+<html lang="en-US">
+
+<head>
+
+</head>
+<body>
+
+
+<div class="window" style="margin: 32px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          Price diagram
+        </div>
+
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Prices</p>
+      
+         <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: @Html.Raw(ViewBag.productNameList),
+      datasets: [{
+        label: '# of Prices',
+        data: [@ViewBag.productPriceList],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+@model IEnumerable<EKeyModel>
+
+@{
+    ViewBag.Title = "EKeys";
+    Layout = "_Layout";
+}
+<head>
+  <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
+<div class="window" style="margin: 32px;">
+  <div class="title-bar">
+    <div class="title-bar-text">
+      E-Key table
+    </div>
+
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <table>
+      <tr>
+        <th>E-key</th>
+        <th>Product</th>
+        <th>ID cart</th>
+        <th>ID order</th>
+      </tr>
+      
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>@item.Key</td>
+          <td>@item.Product.ProductInfo.Name</td>
+          <td>@item.CartId</td>
+          <td>@item.OrderId</td>
+          <td><button>Edit</button></td>
+          <td><button>Delete</button></td>
+        </tr>
+      }
+    </table>
+    
+    
+    <section class="field-row" style="justify-content: flex-end">
+      <button>OK</button>
+      <button>Cancel</button>
+    </section>
+  </div>
+</div>

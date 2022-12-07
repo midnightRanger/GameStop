@@ -21,37 +21,19 @@
 <header>
     <div class="title-bar">
       <div class="title-bar-text">A Helpful Bar</div>
-      <div class="title-bar-controls">
-        <button aria-label="Help"></button>
-          <button aria-label="Close" onclick="location.href='@Url.Action("Logout", "Auth")'" > </button>
-          <button value="User" onclick="location.href='@Url.Action("UserInfo", "UserInfo")'" > User </button>
-          <button value="Cart" onclick="location.href='@Url.Action("Cart", "Cart")'" > Cart </button>
-          </div>
+        <div class="title-bar-controls">
+            <button aria-label="Help"></button>
+            <button aria-label="Close" onclick="location.href='@Url.Action("Logout", "Auth")'"> </button>
+            <button style="width: 30px; padding-left: 10px;" onclick="location.href='@Url.Action("UserInfo", "UserInfo")'"> User </button>
+            <button style="width: 30px; padding-left: 10px;" onclick="location.href='@Url.Action("Cart", "Cart")'"> Cart </button>
+            @if (ViewContext.HttpContext.User.IsInRole("ADMIN"))
+                         {
+                             <button style="width: 40px" onclick="location.href='@Url.Action("Admin", "Admin")'" > Admin </button>
+                             
+                         }
+        </div>
     </div>
 </header>
-
-
-@* <header> *@
-@*     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"> *@
-@*         <div class="container-fluid"> *@
-@*             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GameStop</a> *@
-@*             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" *@
-@*                     aria-expanded="false" aria-label="Toggle navigation"> *@
-@*                 <span class="navbar-toggler-icon"></span> *@
-@*             </button> *@
-@*             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"> *@
-@*                 <ul class="navbar-nav flex-grow-1"> *@
-@*                     <li class="nav-item"> *@
-@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
-@*                     </li> *@
-@*                     <li class="nav-item"> *@
-@*                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
-@*                     </li> *@
-@*                 </ul> *@
-@*             </div> *@
-@*         </div> *@
-@*     </nav> *@
-@* </header> *@
 <div class="container">
     <main role="main">
         @RenderBody()

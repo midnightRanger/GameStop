@@ -44,6 +44,19 @@ aside, section {
   font-family: PixalatedSans, serif;
 }
 
+table {
+  border-collapse: collapse;
+  border: 0.5px solid black;
+}
+table td {
+  border: 0.5px solid black;
+  padding: 10px;
+}
+table th {
+  border: 0.5px solid black;
+  padding: 10px;
+}
+
 .av-text {
   font-size: x-large;
   font-weight: normal;

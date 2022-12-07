@@ -255,7 +255,7 @@ public class AccountService : IAccountService
         var claims = new List<Claim>
         {
             new Claim(ClaimsIdentity.DefaultNameClaimType, account.Login),
-            new Claim(ClaimsIdentity.DefaultRoleClaimType, account.Email)
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, account.Role)
         };
         return new ClaimsIdentity(claims, "ApplicationCookie",
             ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

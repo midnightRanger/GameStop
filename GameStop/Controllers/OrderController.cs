@@ -13,6 +13,7 @@ public class OrderController: Controller
     
     private readonly ICart _cartRepository;
     private readonly IOrderService _orderService;
+    private readonly ICartService _cartService; 
     private readonly IUser _userRepository;
     private readonly List<UserModel> _userList;
     private readonly List<CartModel> _cartList;
@@ -20,11 +21,12 @@ public class OrderController: Controller
     public OrderController(ILogger<OrderController> logger, 
         ApplicationContext db,
         IUser userRepository,
-        ICart cartRepository, IOrderService orderService, IOrder orderRepository)
+        ICart cartRepository, IOrderService orderService, IOrder orderRepository, ICartService cartService)
     {
         _cartRepository = cartRepository;
         _orderService = orderService;
         _orderRepository = orderRepository;
+        _cartService = cartService;
         _userRepository = userRepository;
         _logger = logger;
         _db = db;
@@ -61,12 +63,13 @@ public class OrderController: Controller
         var cart = _cartList.FirstOrDefault(c=> c.Id == user.Cart[0].Id);
         
         var response = await _orderService.MakeOrder(user, cart);
-        
-        if (response.StatusCode == GameStop.StatusCode.OK) 
+        var responseCart = await _cartService.ClearCart(user);
+
+        if (response.StatusCode == GameStop.StatusCode.OK && responseCart.StatusCode == GameStop.StatusCode.OK)
+        {
             return RedirectToAction("Orders", "Order");
-        
+        }
         return RedirectToAction("MakeOrder", "Order", new {error = response.Description});
-        
     }
     
     public async Task<IActionResult> Orders()

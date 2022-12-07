@@ -55,6 +55,31 @@ public class CartService : ICartService
         }
     }
 
+    public async Task<BaseResponse<bool>> ClearCart(UserModel user)
+    {
+
+        if (user.Cart[0] == null || user.Cart[0].Ekeys == null)
+        {
+            return new BaseResponse<bool>()
+            {
+                StatusCode = StatusCode.CartNotFound,
+                Description = "Something goes wrong"
+            };
+        }
+        foreach (var keys in user.Cart[0].Ekeys.ToList()) 
+        {
+            keys.CartId = null;
+            await _ekeyRepository.updateEkey(keys);
+        }
+
+        return new BaseResponse<bool>()
+        {
+            Data = true,
+            StatusCode = StatusCode.OK,
+            Description = "Order was successfully confirmed"
+        };
+    }
+
     public async Task<BaseResponse<bool>> AddToCart(int? productId, UserModel _user)
     {
         try
