@@ -63,9 +63,8 @@ public class OrderController: Controller
         var cart = _cartList.FirstOrDefault(c=> c.Id == user.Cart[0].Id);
         
         var response = await _orderService.MakeOrder(user, cart);
-        var responseCart = await _cartService.ClearCart(user);
 
-        if (response.StatusCode == GameStop.StatusCode.OK && responseCart.StatusCode == GameStop.StatusCode.OK)
+        if (response.StatusCode == GameStop.StatusCode.OK)
         {
             return RedirectToAction("Orders", "Order");
         }

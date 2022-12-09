@@ -23,7 +23,7 @@ public class EKeyRepository : IEkey
 
     public async Task updateEkey(EKeyModel ekey)
     {
-        _db.Entry(ekey).State = EntityState.Modified;
+        _db.EKey.Update(ekey);
         await _db.SaveChangesAsync();
     }
     public async Task updateEkeyInLoop(EKeyModel ekey)

@@ -1,6 +1,7 @@
 using System.Collections.Specialized;
 using System.Data.Entity;
 using GameStop.DAL.Interface;
+using GameStop.DAL.Repository;
 using GameStop.Models;
 using GameStop.Response;
 using Microsoft.EntityFrameworkCore;
@@ -13,13 +14,15 @@ public class OrderService : IOrderService
     private readonly ApplicationContext _db;
     private readonly IOrder _orderRepository;
     private readonly IEkey _ekeyRepository;
-
-    public OrderService(IEkey ekeyRepository, IOrder orderRepository, ILogger<OrderService> logger, ApplicationContext db)
+    private readonly ICart _cartRepository;
+    
+    public OrderService(IEkey ekeyRepository, IOrder orderRepository, ILogger<OrderService> logger, ApplicationContext db, ICart cartRepository)
     {
         _ekeyRepository = ekeyRepository;
         _orderRepository = orderRepository;
         _logger = logger;
         _db = db;
+        _cartRepository = cartRepository;
     }
 
     public async Task<BaseResponse<bool>> MakeOrder(UserModel user, CartModel cart)
@@ -46,29 +49,24 @@ public class OrderService : IOrderService
             {
                 Sum = sum,
                 DateTime = DateTime.Now,
-                EKeys = user.Cart[0].Ekeys,
+                EKeys = user.Cart[0].Ekeys.ToList(),
                 TransactionDataModel = null,
                 User = user,
                 TransactionDataId = null
             };
             //await _orderRepository.addOrder(order);
-            var orderM = await _db.Order.AddAsync(order);
+            await _db.Order.AddAsync(order);
             await _db.SaveChangesAsync();
 
+            cart.Ekeys.Clear();
+            _db.Cart.Update(cart);
+            await _db.SaveChangesAsync();
 
-            // foreach (var keys in user.Cart[0].Ekeys.ToList()) 
-            // {
-            //     keys.CartId = null;
-            //     keys.OrderId = orderM.Entity.UserId;
-            //     await _ekeyRepository.updateEkey(keys);
-            // }
-             
-             
             return new BaseResponse<bool>()
             {
                 Data = true,
                 StatusCode = StatusCode.OK,
-                Description = "Order was sucessfully confirmed"
+                Description = "Order was successfully confirmed"
             };
         }   
         
