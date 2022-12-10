@@ -55,29 +55,47 @@
                 <button> Add to cart </button>
             </div>  
         </div>
-        
-        
-
     </section>
-    
-    <div>
-                @foreach (var reviews in Model.Reviews)
-                {
-                    <div class="window" style="margin: 32px;">
-                        <div class="title-bar">
-                            <div class="title-bar-text">
-                                Author: @reviews.Author.Account.Login - Hours: @reviews.Hours
-                            </div>
-                        </div>
-                        <div class="window-body">
-                            <p>@reviews.Text</p>
-                            <section class="field-row" style="justify-content: flex-end">
-                                <p>@reviews.Recommend</p>
-                            </section>
-                        </div>
-                    </div>   
-                }
+    </form>
+<div>
+    @foreach (var reviews in Model.Reviews)
+    {
+        <div class="window" style="margin: 32px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    Author: @reviews.Author.Account.Login - Hours: @reviews.Hours
+                </div>
             </div>
+            <div class="window-body">
+                <p>@reviews.Text</p>
+                <section class="field-row" style="justify-content: flex-end">
+                    <p>@reviews.Recommend</p>
+                </section>
+            </div>
+        </div>   
+    }
+</div>
+
+<form method="post" asp-controller="Product" asp-action="AddReview">
+    <div class="window" style="margin: 32px;">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                Add comment...
+            </div>
+        </div>
+        <div class="window-body">
+            <label for="Text"> Comment: </label>
+            <input type="text" name="Text" height="50px"/>
+            <label for="Hours"> Hours: </label>
+            <input type="number" name="Hours"/>
+            <input type="checkbox" name="Recommend"/>
+            <section class="field-row" style="justify-content: flex-end">
+                <input type="submit" value="Add comment"/>
+            </section>
+
+        </div>
+        </div>   
 </form>
+
 
 
