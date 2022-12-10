@@ -1,0 +1,25 @@
+@model GameStop.Models.ViewModels.EKeyUpdateViewModel
+
+@{
+    ViewBag.Title = "E-Key add";
+    Layout = "_Layout";
+}
+
+<h2>E-key add</h2>
+<form method="post" asp-controller="Admin" asp-action="EKeyAddPost">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="EKey.Key"></label><br />
+        <input asp-for="EKey.Key" />
+        <span asp-validation-for="EKey.Key"></span>
+    </div>
+    <div>
+        <select asp-for="ProductId" asp-items="@Model.Products">
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Add E-key" />
+    </div>
+</form>

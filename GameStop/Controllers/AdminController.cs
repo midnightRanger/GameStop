@@ -59,6 +59,39 @@ public class AdminController : Controller
             ThenInclude(p=>p.ProductInfo).ToListAsync();
         return View(ekeys); 
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> EKeyAdd(EKeyUpdateViewModel updateViewModel)
+    {
+        List<ProductViewModel> productSelectList = new List<ProductViewModel>();
+        foreach (var products in _productRepository.getAll().Include(p=>p.ProductInfo))
+        {
+            productSelectList.Add(new ProductViewModel()
+            {
+                Id = products.Id,
+                Name = products.ProductInfo.Name
+            });
+        }
+
+        updateViewModel = new()
+        {
+            Products = new SelectList(productSelectList, nameof(ProductViewModel.Id), nameof(ProductViewModel.Name))
+        };
+        return View(updateViewModel);
+    }
+    [HttpPost]
+    public async Task<IActionResult> EKeyAddPost(EKeyUpdateViewModel eKeyUpdateViewModel)
+    {
+        EKeyModel ekey = new EKeyModel()
+        {
+            Admin = _userList.FirstOrDefault(u => u.Account?.Login == User.Identity.Name),
+            Key = eKeyUpdateViewModel.EKey.Key,
+            ProductId = eKeyUpdateViewModel.ProductId
+        };
+        await _ekeyRepository.addEkey(ekey);
+
+        return RedirectToAction("EKeys", "Admin" ,new { notification = "E-key was added"  });
+    }
 
     [HttpGet]
     public async Task<IActionResult> EKeyUpdate(int? number, EKeyUpdateViewModel updateViewModel)

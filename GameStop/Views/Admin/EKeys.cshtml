@@ -30,6 +30,7 @@
         <th>Product</th>
         <th>ID cart</th>
         <th>ID order</th>
+        <th>Actions</th>
       </tr>
 
       @foreach (var item in Model)
@@ -41,14 +42,16 @@
           <td>@item.CartId</td>
           <td>@item.OrderId</td>
           <td><a asp-action="EKeyUpdate" asp-controller="Admin" asp-route-number="@item.Number">Edit</a></td>
-          <td><a asp-action="EKeyDelete" asp-controller="Admin" asp-route-number="@item.Number">Edit</a></td>
+          <td><a asp-action="EKeyDelete" asp-controller="Admin" asp-route-number="@item.Number">Delete</a></td>
         </tr>
       }
     </table>
 
 
     <section class="field-row" style="justify-content: flex-end">
-      <button>OK</button>
+      <form method="get" asp-action="EKeyAdd" asp-controller="Admin">
+        <input value = "Add E-Key" type="submit"/>
+      </form>
       <button>Cancel</button>
     </section>
   </div>

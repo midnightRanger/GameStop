@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameStop.Models;
 
@@ -14,5 +15,7 @@ public class EKeyModel
     public CartModel? Cart { get; set; }
     public int? OrderId { get; set; }
     public OrderModel? Order { get; set; }
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int? Number { get; set; }
 }
