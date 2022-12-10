@@ -85,10 +85,11 @@
         </div>
         <div class="window-body">
             <label for="Text"> Comment: </label>
-            <input type="text" name="Text" height="50px"/>
+            <textarea name="Text" style="height: 50px; width: 100%"></textarea>
             <label for="Hours"> Hours: </label>
-            <input type="number" name="Hours"/>
-            <input type="checkbox" name="Recommend"/>
+            <input type="number" name="Hours"/><br/>
+            <input type="checkbox" value="true" id="Recommend" name="Recommend"/> 
+            <label for="Recommend"> Recommend: </label> <br/>
             <section class="field-row" style="justify-content: flex-end">
                 <input type="submit" value="Add comment"/>
             </section>
