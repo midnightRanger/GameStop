@@ -55,8 +55,29 @@
                 <button> Add to cart </button>
             </div>  
         </div>
+        
+        
 
     </section>
+    
+    <div>
+                @foreach (var reviews in Model.Reviews)
+                {
+                    <div class="window" style="margin: 32px;">
+                        <div class="title-bar">
+                            <div class="title-bar-text">
+                                Author: @reviews.Author.Account.Login - Hours: @reviews.Hours
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <p>@reviews.Text</p>
+                            <section class="field-row" style="justify-content: flex-end">
+                                <p>@reviews.Recommend</p>
+                            </section>
+                        </div>
+                    </div>   
+                }
+            </div>
 </form>
 
 

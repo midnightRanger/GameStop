@@ -29,7 +29,8 @@ public class HomeController : Controller
         _productRepository = productRepository; 
         _logger = logger;
         _db = db;
-        _allProduct = productRepository.getAll().Include(u => u.Platforms).Include(u=>u.ProductInfo).ToList();
+        _allProduct = productRepository.getAll().Include(u => u.Platforms)
+            .Include(u=>u.ProductInfo).Include(r=>r.Reviews).ToList();
 
     }
     

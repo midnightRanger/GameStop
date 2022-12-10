@@ -19,7 +19,7 @@ public class ApplicationContext : DbContext
     public DbSet<LicenseModel> License { get; set; } = null!;
     public DbSet<CartModel> Cart { get; set; } = null!;
     public DbSet<OrderModel> Order { get; set; } = null!;
-    
+    public DbSet<ReviewModel> Review { get; set; } = null!;
     public ApplicationContext()
     {
     }

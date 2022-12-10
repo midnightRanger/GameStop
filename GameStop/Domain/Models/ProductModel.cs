@@ -16,5 +16,6 @@ public class ProductModel
     public int ProductInfoId { get; set; }
     public ProductInfoModel? ProductInfo { get; set; }
     
-    public List<PlatformModel> Platforms { get; set; } = new();
+    public List<PlatformModel>? Platforms { get; set; } = new();
+    public List<ReviewModel>? Reviews { get; set; } = new();
 }

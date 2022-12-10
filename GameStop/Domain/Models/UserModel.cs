@@ -17,4 +17,6 @@ public class UserModel
     public AccountModel? Account { get; set; }
     public double? Balance { get; set; } = null; 
     public List<CartModel>? Cart { get; set; }
+    
+    public List<ReviewModel>? Reviews { get; set; } = new();
 }
