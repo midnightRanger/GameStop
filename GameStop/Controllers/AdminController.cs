@@ -17,17 +17,21 @@ public class AdminController : Controller
     private readonly IProduct _productRepository;
     private readonly IEkey _ekeyRepository;
     private readonly IUser _userRepository;
+    private readonly IPlatform _platformRepository; 
     private List<UserModel> _userList;
     private IEnumerable<ProductModel> _allProduct;
+    private IEnumerable<PlatformModel> _allPlatform;
 
-    public AdminController(ILogger<HomeController> logger, ApplicationContext db, IProduct productRepository, IEnumerable<ProductModel> allProduct, IEkey ekeyRepository, IUser userRepository)
+    public AdminController(ILogger<HomeController> logger, ApplicationContext db, IProduct productRepository, IEnumerable<ProductModel> allProduct, IEkey ekeyRepository, IUser userRepository, IPlatform platformRepository)
     {
         _logger = logger;
         _db = db;
         _productRepository = productRepository;
         _ekeyRepository = ekeyRepository;
         _userRepository = userRepository;
+        _platformRepository = platformRepository;
         _userList = userRepository.getAll().Include(u => u.Account).ToList();
+        _allPlatform = platformRepository.getAll().Include(p => p.Products);
         _allProduct = productRepository.getAll().Include(u => u.Platforms).Include(u=>u.ProductInfo).ToList();
     }
 
@@ -35,18 +39,25 @@ public class AdminController : Controller
     public IActionResult Diagrams()
     {
 
-        List<String> name = new List<string>();
-        List<Double> price = new List<Double>();
-        name = _allProduct.Select(u => u.ProductInfo.Name).ToList();
-        price = _allProduct.Select(u => u.Cost).ToList();
+        List<String> name = _allProduct.Select(u => u.ProductInfo.Name).ToList();
+        List<Double> price = _allProduct.Select(u => u.Cost).ToList();
+
+        List<String> platformName = _allPlatform.Select(p => p.Name).ToList();
+        List<int> gamesOnPlatform = _allPlatform.Select(p => p.Products.Count()).ToList();
+
+        var jsonPlatformName = JsonSerializer.Serialize(platformName);
+        var gamesOnPlatformList = string.Join(",", gamesOnPlatform);
 
         var json = JsonSerializer.Serialize(name);
         var priceList = string.Join(",", price);
 
         ViewBag.productNameList = json;
-        ViewBag.productPriceList = priceList; 
-     
-     return View();
+        ViewBag.productPriceList = priceList;
+
+        ViewBag.platformNames = jsonPlatformName;
+        ViewBag.platformGames = gamesOnPlatformList; 
+        
+        return View();
     }
     public IActionResult Admin()
     {

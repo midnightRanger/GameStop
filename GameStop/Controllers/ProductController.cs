@@ -54,7 +54,7 @@ public class ProductController: Controller
         ProductModel product = _allProduct.FirstOrDefault(p => p.Id == id);
         ProductViewModel productViewModel = new ProductViewModel()
         {
-            Reviews = product.Reviews,
+            Reviews = product.Reviews.Where(r=>r.IsAccept).ToList(),
             Avatar = product.ProductInfo.Avatar,
             Cost = product.Cost,
             Description = product.ProductInfo.Description,
