@@ -249,7 +249,6 @@ public class AccountService : IAccountService
     }
     
     
-
     private ClaimsIdentity Authenticate(AccountModel account)
     {
         var claims = new List<Claim>

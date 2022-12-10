@@ -65,7 +65,6 @@ public class CartController : Controller
         if (response.StatusCode == GameStop.StatusCode.OK)
         {
             return RedirectToAction("Cart", "Cart");
-            
         }
         //TODO normal response transfer
         return RedirectToAction("Main", "Home", new { error = response.Description  }); 

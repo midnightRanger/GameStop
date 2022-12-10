@@ -1,0 +1,28 @@
+@model GameStop.Models.ViewModels.EKeyUpdateViewModel
+
+@{
+    ViewBag.Title = "E-Key update";
+    Layout = "_Layout";
+}
+
+<h2>Изменение электронного ключа</h2>
+<form method="post" asp-controller="Admin" asp-action="EKeyUpdate">
+    <div asp-validation-summary="ModelOnly"></div>
+    
+      <label asp-for="Number"></label><br />
+      <input readonly="readonly" value="@Model.Number" asp-for="Number" />
+    
+    <div>
+        <label asp-for="EKey.Key"></label><br />
+        <input  readonly="readonly" value="@Model.EKey.Key" asp-for="EKey.Key" />
+        <span asp-validation-for="EKey.Key"></span>
+    </div>
+    <div>
+        <select asp-for="ProductId" asp-items="@Model.Products">
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Change E-key" />
+    </div>
+</form>

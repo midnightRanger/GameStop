@@ -6,14 +6,22 @@
     Layout = "_Layout";
 }
 
-@foreach (var item in Model)
-{
-    <p> @item.DateTime </p>
+
+    <div class="window" style="width: 300px;">
+        <div class="title-bar">
+            <div class="title-bar-text">Orders</div>
+        </div>
+        <div class="window-body">
+            <p> Your orders:</p>
+            @foreach (var item in Model) {
+                <p> @item.DateTime - @item.Sum </p>
+                <ul>
+                    @foreach (var key in item.Ekeys)
+                    {
+                        <li> @key.Key - @key.Product.ProductInfo.Name</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
     
-     @foreach (var key in item.Ekeys)
-     {
-        
-         <p> @key.Key </p>
-     }
-     
-}

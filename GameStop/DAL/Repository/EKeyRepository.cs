@@ -31,9 +31,9 @@ public class EKeyRepository : IEkey
         _db.Entry(ekey).State = EntityState.Modified;
     }
 
-    public EKeyModel deleteEkey(string key)
+    public EKeyModel deleteEkey(int? number)
     {
-        EKeyModel? ekey = _db.EKey.Find(key);
+        EKeyModel? ekey = _db.EKey.FirstOrDefault(e=>e.Number == number);
 
         if (ekey != null)
         {
@@ -55,9 +55,9 @@ public class EKeyRepository : IEkey
         return await _db.EKey.ToListAsync();
     }
 
-    public async Task<EKeyModel> getEkey(string key)
+    public async Task<EKeyModel> getEkey(int? number)
     {
-        EKeyModel? ekey = await _db.EKey.FindAsync(key);
+        EKeyModel? ekey = await _db.EKey.FirstOrDefaultAsync(u=>u.Number == number);
 
         if (ekey != null)
         {

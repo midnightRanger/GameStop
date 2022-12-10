@@ -21,28 +21,32 @@
     </div>
   </div>
   <div class="window-body">
+    
+    <div class="error-text"> <div asp-validation-summary="ModelOnly"></div> </div>
     <table>
       <tr>
+        <th>№</th>
         <th>E-key</th>
         <th>Product</th>
         <th>ID cart</th>
         <th>ID order</th>
       </tr>
-      
+
       @foreach (var item in Model)
       {
         <tr>
+          <td>@item.Number</td>
           <td>@item.Key</td>
           <td>@item.Product.ProductInfo.Name</td>
           <td>@item.CartId</td>
           <td>@item.OrderId</td>
-          <td><button>Edit</button></td>
-          <td><button>Delete</button></td>
+          <td><a asp-action="EKeyUpdate" asp-controller="Admin" asp-route-number="@item.Number">Edit</a></td>
+          <td><a asp-action="EKeyDelete" asp-controller="Admin" asp-route-number="@item.Number">Edit</a></td>
         </tr>
       }
     </table>
-    
-    
+
+
     <section class="field-row" style="justify-content: flex-end">
       <button>OK</button>
       <button>Cancel</button>
