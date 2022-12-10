@@ -46,6 +46,7 @@ public class AccountService : IAccountService
             {
                 Login = model.Login,
                 Email = model.Email,
+                Role = "USER",
                 IsActive = true,
                 Password = PasswordHasher.HashPassword(model.Password),
             };
@@ -178,6 +179,8 @@ public class AccountService : IAccountService
              */
             account.Email = model.Email;
             account.Login = model.Login;
+            account.Role = "USER";
+       
             account.Password = PasswordHasher.HashPassword(model.Password);
 
             /*

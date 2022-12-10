@@ -3,12 +3,13 @@ using GameStop.DAL.Interface;
 using GameStop.DAL.Repository;
 using GameStop.Models;
 using GameStop.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStop.Controllers;
-
+[Authorize(Roles = "ADMIN")]
 public class AdminController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -30,6 +31,7 @@ public class AdminController : Controller
         _allProduct = productRepository.getAll().Include(u => u.Platforms).Include(u=>u.ProductInfo).ToList();
     }
 
+    
     public IActionResult Diagrams()
     {
 
