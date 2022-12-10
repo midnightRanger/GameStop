@@ -31,6 +31,7 @@
         <th>Recommend</th>
         <th>Product</th>
         <th>Author</th>
+        <th>Accepted</th>
       </tr>
 
       @foreach (var item in Model)
@@ -42,6 +43,7 @@
           <td>@item.Recommend</td>
           <td>@item.Product.ProductInfo.Name</td>
           <td>@item.Author.Account.Login</td>
+          <td>@item.IsAccept</td>
           <td><a asp-action="ReviewUpdate" asp-controller="Moderator" asp-route-id="@item.Id">Edit</a></td>
           @* <td><a asp-action="ReviewDelete" asp-controller="Moderator" asp-route-id="@item.Id">Delete</a></td> *@
         </tr>

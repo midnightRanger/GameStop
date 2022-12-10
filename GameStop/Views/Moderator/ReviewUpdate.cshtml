@@ -15,14 +15,19 @@
     <div asp-validation-summary="ModelOnly"></div>
     <div>
          <label> Id: </label>
-        <input type="text" class="input-margin" readonly="readonly" value="@Model.Id" asp-for="Text"/> <br/>
+        <input type="text" class="input-margin" readonly="readonly" value="@Model.Id" asp-for="Id"/> <br/>
         <label asp-for="Text"> Text: </label>
         <input type="text" class="input-margin" readonly="readonly" value="@Model.Text" asp-for="Text"/> <br/>
         <label asp-for="Author"> Author: </label>
-        <input class="input-margin" type="text" readonly="readonly" value="@Model.Author.Account.Login"/> <br/>
+        <input class="input-margin" type="text" readonly="readonly" asp-for="Author.Account.Login" /> <br/>
+        <label asp-for="Hours"> Hours: </label>
+        <input class="input-margin" type="text" readonly="readonly" asp-for="Hours" value="@Model.Hours"/> <br/>
         <label asp-for="Product"> Product: </label>
         <input class="input-margin"  type="text" readonly="readonly" value="@Model.Product.ProductInfo.Name"/> <br/>
-         <input class="input-margin"  type="checkbox" value="true" id="IsAccept" name="IsAccept"/> 
+        
+        <input class="input-margin" type="checkbox" value="true" asp-for="Recommend" id="Recommend" name="Recommend"/> 
+        <label for="Recommend"> Recommend </label> <br/>
+        <input class="input-margin"  type="checkbox" value="true" id="IsAccept" name="IsAccept" asp-for="IsAccept"/> 
                 <label for="IsAccept"> Accept </label> <br/>
     </div>
 
