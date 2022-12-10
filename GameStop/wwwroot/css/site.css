@@ -43,7 +43,9 @@ aside, section {
   font-weight: bolder;
   font-family: PixalatedSans, serif;
 }
-
+.input-margin {
+  margin: 10px;
+}
 table {
   border-collapse: collapse;
   border: 0.5px solid black;

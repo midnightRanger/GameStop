@@ -42,18 +42,10 @@
           <td>@item.Recommend</td>
           <td>@item.Product.ProductInfo.Name</td>
           <td>@item.Author.Account.Login</td>
-          <td><a asp-action="Reviews" asp-controller="Moderator" asp-route-id="@item.Id">Edit</a></td>
+          <td><a asp-action="ReviewUpdate" asp-controller="Moderator" asp-route-id="@item.Id">Edit</a></td>
           @* <td><a asp-action="ReviewDelete" asp-controller="Moderator" asp-route-id="@item.Id">Delete</a></td> *@
         </tr>
       }
     </table>
-
-
-    <section class="field-row" style="justify-content: flex-end">
-      <form method="get" asp-action="EKeyAdd" asp-controller="Admin">
-        <input value = "Add E-Key" type="submit"/>
-      </form>
-      <button>Cancel</button>
-    </section>
   </div>
 </div>
